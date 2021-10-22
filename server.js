@@ -5,7 +5,7 @@ const path = require('path');
 const ejsMate = require('ejs-mate');
 const indexRoutes = require('./routes/index');
 
-connectDB();
+// connectDB();
 
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
