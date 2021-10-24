@@ -1,3 +1,3 @@
-# Quizbuzz
+# TestMate
 
 Online Assessment Platform
