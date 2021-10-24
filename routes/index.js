@@ -9,4 +9,8 @@ router.get('/profile', (req, res) => {
    res.render('profile.ejs');
 });
 
+router.get('/create_test', (req, res) => {
+   res.render('createTest.ejs');
+});
+
 module.exports = router;
