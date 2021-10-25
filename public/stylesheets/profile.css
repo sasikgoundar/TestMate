@@ -1,18 +1,21 @@
 .uploadBox {
-   border: 1px solid #e6e9ec;
-   border-radius: 3px;
-   margin-left: 1.1rem;
-   margin-bottom: 2rem;
-   padding-top: 20px;
-   padding-bottom: 20px;
-   width: 90%;
+    border: 1px solid #e6e9ec;
+    border-radius: 3px;
+    margin-left: 1.1rem;
+    margin-bottom: 2rem;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 90%;
 }
 
 .color {
-   color: #4e657e;
-   font-size: 20px;
+    color: #4e657e;
+    font-size: 20px;
 }
 
 .chart {
-   height: 555px;
+    height: 555px;
+}
+.table {
+    font-size: 20px;
 }
