@@ -1,11 +1,11 @@
 .uploadBox {
-    border: 1px solid #e6e9ec;
+    border: 2px solid #e6e9ec;
     border-radius: 3px;
-    margin-left: 1.1rem;
+    /* margin-left: 1.1rem; */
     margin-bottom: 2rem;
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 90%;
+    /* width: 90%; */
 }
 
 .color {

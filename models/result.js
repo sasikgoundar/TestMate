@@ -6,7 +6,8 @@ const ResultSchema = new mongoose.schema({
         ref: 'Test',
     },
     username: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
     },
     correctQues: [
         {
@@ -20,7 +21,11 @@ const ResultSchema = new mongoose.schema({
             ref: 'Question',
         },
     ],
-    marks: {
+    percentScore: {
         type: Number,
+        required: true,
     },
 });
+
+const Result = mongoose.model('Result', ResultSchema);
+module.exports = Result;
