@@ -1,0 +1,168 @@
+<% layout('layouts/boilerplate') %>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+   integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+<link rel="stylesheet" href="../stylesheets/signin.css">
+
+
+</head>
+
+<body>
+   
+   
+   <section id='section1'>
+
+  
+      <div class="container2">
+
+         <div class="user signinBx">
+            <div class="imgBx"><img
+                  src="https://www.chrishazemusic.com/wp-content/uploads/2018/02/Website-Background-scaled.jpg"
+                  id="sign_up_img" alt="" class="sign_in_img" /></div>
+            <div class="formBx">
+
+               <form action="/login" method="POST">
+                  <h2>Sign In</h2>
+                  <input type="email" name="username" placeholder="Email" />
+                  <input type="password" name="password" placeholder="Password" />
+                  <p class="forgot"><a href="#">forgot password?</a></p>
+                  <input type="submit" value="Login" />
+                  <p onclick="">
+                     Don't have an account ?
+                     <a href="#" onclick="toggleForm(); changeImg();">Sign Up.</a>
+                  </p>
+               </form>
+            </div>
+         </div>
+         <div class="user signupBx">
+            <div class="formBx">
+               <form id="regForm" action="/register" method="POST">
+                  <h2>Create an account</h2>
+                  <div class="tab">
+                     <input type="text" name="username" placeholder="Username" />
+                      <input type="text" name="fullname" placeholder="Full name" />
+                      <input type="text" name="university" placeholder="University" />
+                  </div>
+                  <div class="tab">
+                     <input type="email" name="username" placeholder="Email" />                
+                     <input type="password" name="password" placeholder="Create Password" />
+                     <input type="password" name="cpwd" placeholder="Confirm Password" />
+                  </div>
+
+                  <div style="overflow:auto;">
+                   <div style="float:right;">
+                     <button type="button"class="btn btn-info" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                     <button type="button" class="btn btn-info"  id="nextBtn" onclick="nextPrev(1)">Next</button>
+                   </div>
+                 </div>
+
+                  <div style="text-align:center;margin-top:40px;">
+                   <span class="step"></span>
+                   <span class="step"></span>   
+               
+                 </div>
+
+                  <p onclick="">
+                     Already have an account ?
+                     <a href="#" onclick="toggleForm(); changeImg2();">Sign in.</a>
+                  </p>
+               </form>
+            </div>
+
+            <div class="imgBx"><img src="https://i.ytimg.com/vi/4l6J5jhRgos/maxresdefault.jpg" alt=""
+                  id="sign_in_img" /></div>
+         </div>
+      </div>
+      
+   </section>
+   <br>
+      <br>
+   <script type="text/javascript">
+      const toggleForm = () => {
+         const container = document.querySelector('.container2');
+         container.classList.toggle('active');
+      };
+
+      function changeImg() {
+         document.getElementById('sign_in_img').src =
+            'https://i.pinimg.com/originals/0d/af/b7/0dafb7928a99a9cb552a941895a6e586.jpg';
+         document.getElementById('section1').style.backgroundImage =
+            "url('https://www.chrishazemusic.com/wp-content/uploads/2018/02/Website-Background-scaled.jpg')";
+
+      };
+
+      function changeImg2() {
+         document.getElementById('sign_up_img').src =
+            'https://www.chrishazemusic.com/wp-content/uploads/2018/02/Website-Background-scaled.jpg';
+         document.getElementById('section1').style.backgroundImage =
+            "url('https://i.pinimg.com/originals/0d/af/b7/0dafb7928a99a9cb552a941895a6e586.jpg')"
+      };
+
+      var currentTab = 0; // Current tab is set to be the first tab (0)
+      showTab(currentTab); // Display the current tab
+
+      function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+          document.getElementById("prevBtn").style.display = "none";
+        } else {
+          document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+          document.getElementById("nextBtn").innerHTML = "Submit";
+        } else {
+          document.getElementById("nextBtn").innerHTML = "Next";
+        }
+        //... and run a function that will display the correct step indicator:
+       fixStepIndicator(n)
+      }
+
+      function nextPrev(n) {
+     // This function will figure out which tab to display
+     var x = document.getElementsByClassName("tab");
+     // Exit the function if any field in the current tab is invalid:
+     if (n == 1 && !validateForm()) return false;
+     // Hide the current tab:
+     x[currentTab].style.display = "none";
+     // Increase or decrease the current tab by 1:
+     currentTab = currentTab + n;
+     // if you have reached the end of the form...
+     if (currentTab >= x.length) {
+       // ... the form gets submitted:
+       document.getElementById("regForm").submit();
+       return false;
+     }
+     // Otherwise, display the correct tab:
+     showTab(currentTab);
+   }
+
+
+function validateForm() {
+  // This function deals with validation of the form fields
+  var x, y, i, valid = true;
+  x = document.getElementsByClassName("tab");
+  y = x[currentTab].getElementsByTagName("input");
+  // A loop that checks every input field in the current tab:
+  
+  // If the valid status is true, mark the step as finished and valid:
+  if (valid) {
+    document.getElementsByClassName("step")[currentTab].className += " finish";
+  }
+  return valid; // return the valid status
+}
+
+function fixStepIndicator(n) {
+  // This function removes the "active" class of all steps...
+  var i, x = document.getElementsByClassName("step");
+  for (i = 0; i < x.length; i++) {
+    x[i].className = x[i].className.replace(" active", "");
+  }
+  //... and adds the "active" class on the current step:
+  x[n].className += " active";
+}
+
+
+   </script>
