@@ -3,9 +3,10 @@ const router = express.Router();
 const Test = require('../models/Test');
 const Result = require('../models/Result');
 const Leaderboard = require('../models/Leaderboard');
+const User = require('../models/User');
 // const mongoose = require('mongoose');
 
-router.post('/tests/:testid', async (req, res) => {
+router.get('/tests/:testid', async (req, res) => {
    const testid = req.params.testid;
 
    //generate result
@@ -23,19 +24,19 @@ router.post('/tests/:testid', async (req, res) => {
 
    // const submittedQuestions = submittedTest.questions;
 
-   // const submittedQuestions = [
-   //    {
-   //       questionId: '6177b09987796bd08b853611',
-   //       submittedOption: 'D',
-   //    },
-   //    {
-   //       questionId: '6177b0ee2c41c465a9289cab',
-   //       submittedOption: 'B',
-   //    },
-   // ];
+   const submittedQuestions = [
+      {
+         questionId: '6177b09987796bd08b853611',
+         submittedOption: 'A',
+      },
+      {
+         questionId: '6177b0ee2c41c465a9289cab',
+         submittedOption: 'B',
+      },
+   ];
 
    // fetch other user details
-   const userid = '6178e376cda4bd7327a8d404';
+   const userid = '6179468a27b6a8658f9b1edc';
 
    let correctQuestions = [];
    let wrongQuestions = [];
@@ -63,15 +64,24 @@ router.post('/tests/:testid', async (req, res) => {
    // console.log(correctQuestions);
    // console.log(wrongQuestions);
 
+   const foundUser = await User.findById(userid);
+   console.log(foundUser);
+
    let result = new Result({
       testId: testid,
       userId: userid,
+      userfullname: foundUser.fullName,
       correctQues: correctQuestions,
       wrongQues: wrongQuestions,
       percentScore: percentScore,
    });
 
    const newResult = await result.save();
+   foundTest.totalParticipants++;
+   foundTest.save();
+
+   foundUser.previousResults.push(newResult);
+   foundUser.save();
 
    //updating leaderboard
 

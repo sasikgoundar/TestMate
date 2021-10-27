@@ -9,6 +9,7 @@ const ResultSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
    },
+   userfullname: String,
    correctQues: [
       {
          type: mongoose.Schema.Types.ObjectId,

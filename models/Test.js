@@ -28,6 +28,7 @@ const TestSchema = new mongoose.Schema({
       type: Number,
       required: true,
    },
+   totalParticipants: Number,
 });
 
 const Test = mongoose.model('Test', TestSchema);

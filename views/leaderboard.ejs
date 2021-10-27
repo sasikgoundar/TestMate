@@ -1,0 +1,106 @@
+<% layout('layouts/boilerplate') %>
+
+    <link rel="stylesheet" href="../stylesheets/leaderboard.css" />
+
+    <div class="l-wrapper" style="margin-top:70px; font-size: 1.5rem;">
+
+        <div class="l-grid">
+            <div class="l-grid__item l-grid__item--sticky">
+                <div class="c-card">
+                    <div class="c-card__body">
+                        <img src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0="
+                            class="image--cover">
+                        <h3 class="text-center">
+
+                            sasiKumar
+
+                        </h3>
+                    </div>
+                </div>
+                <div class="c-card  u-text--dark">
+                    <div class="c-card__body">
+
+                        <div class="u-display--flex u-justify--space-between">
+
+                            <div class="u-text--left">
+
+                                <div class="u-text--small"><b>My Rank</b></div>
+                                <h2>
+                                    <b>
+                                        1
+                                    </b>
+                                </h2>
+                            </div>
+                            <div class="u-text--right">
+                                <div class="u-text--small"><b>My Score</b></div>
+                                <h2>
+                                    <b>
+                                        44
+                                    </b>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="l-grid__item">
+                <div class="c-card">
+                    <div class="c-card__header">
+                        <h3>Leaderboard for <%=test.testName%>
+                        </h3>
+                        <h3>total participants: <%=test.totalParticipants%>
+                        </h3>
+                        <!-- <select class="c-select">
+                        <option selected="selected"></option>
+                    </select> -->
+                    </div>
+                    <div class="c-card__body">
+
+                        <ul class="c-list" id="list">
+                            <li class="c-list__item">
+                                <div class="c-list__grid">
+                                    <div class="u-text--left u-text--small u-text--medium"><b>RANK</b></div>
+                                    <div class="u-text--left u-text--small u-text--medium"><b>STUDENT NAME</b>
+                                    </div>
+                                    <div class="u-text--center u-text--small u-text--medium"><b>SCORE</b></div>
+
+                                </div>
+                            </li>
+
+                            <% for (let i=0; i < results.length; i++ ) { %>
+
+                                <li class="c-list__item">
+                                    <div class="c-list__grid">
+                                        <div class="c-flag c-place  u-text--dark u-bg--yellow">
+                                            <%=i+1%>
+                                        </div>
+                                        <div class="c-media">
+                                            <img class="c-avatar c-media__img"
+                                                src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0="
+                                                alt="" />
+                                            <div class="c-media__content">
+                                                <a href="/users/<%=results[i].userId%>">
+                                                    <%=results[i].userfullname%>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class=" u-text--center">
+                                            <div class="u-mt--8">
+                                                <strong>
+                                                    <%=results[i].percentScore%> 🏆
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <br>
+                                <% } %>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
