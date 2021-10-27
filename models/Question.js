@@ -25,10 +25,10 @@ const QuestionSchema = new mongoose.Schema({
       type: String,
       required: true,
    },
-   //    mark:{
-   //     type: Number,
-   //     required: true,
-   //    }
+   mark: {
+      type: Number,
+      required: true,
+   },
 });
 
 const Question = mongoose.model('Question', QuestionSchema);

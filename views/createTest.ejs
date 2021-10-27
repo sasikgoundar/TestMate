@@ -123,34 +123,40 @@
                 <div class="container">
 
                     <h3 class="mb-4">Test Settings</h3>
+                    <form action="/testing" method="post">
 
-                    <div class="row">
+                        <div class="row">
 
-                        <div class="col-md-4">
-                            <label for="date" class="form-label">Test Name<span class="text-danger">*</span></label>
-                            <input class="form-control" autocomplete="off" name="" required>
+
+
+                            <div class="col-md-4">
+                                <label for="date" class="form-label">Test Name<span class="text-danger">*</span></label>
+                                <input class="form-control" name="test[testname]" required>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="date" class="form-label">Start-DateTime<span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" id="datetimepickerstart" name="test[startdatetime]"
+                                    required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="date" class="form-label">Last-DateTime<span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" id="datetimepickerend" name="test[lastdatetime]" required>
+                            </div>
+
+                            <div class="col-md-2">
+                                <label for="date" class="form-label">Time-Limit (minutes)<span
+                                        class="text-danger">*</span></label>
+                                <input class="form-control" type="number" name="test[timelimit]" required>
+                            </div>
+
                         </div>
-
-                        <div class="col-md-3">
-                            <label for="date" class="form-label">Start-DateTime<span
-                                    class="text-danger">*</span></label>
-                            <input class="form-control" id="datetimepickerstart" autocomplete="off" name="" required>
-                        </div>
-                        <div class="col-md-3">
-                            <label for="date" class="form-label">Last-DateTime<span class="text-danger">*</span></label>
-                            <input class="form-control" id="datetimepickerend" autocomplete="off" name="" required>
-                        </div>
-
-                        <div class="col-md-2">
-                            <label for="date" class="form-label">Time-Limit (minutes)<span
-                                    class="text-danger">*</span></label>
-                            <input class="form-control" type="number" autocomplete="off" name="" required>
-                        </div>
-
-                    </div>
-                    <a type="button" href="" class="btn btn-primary mt-4 pl-4 pr-4">
-                        SAVE TEST
-                    </a>
+                        <button type="submit" class="btn btn-primary mt-4 pl-4 pr-4">
+                            SAVE TEST
+                        </button>
+                    </form>
                 </div>
             </div>
 

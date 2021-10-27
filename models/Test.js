@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Question = require('./Question');
 
 const TestSchema = new mongoose.Schema({
    testName: {
@@ -11,6 +12,10 @@ const TestSchema = new mongoose.Schema({
          ref: 'Question',
       },
    ],
+   totalMarks: {
+      type: Number,
+      required: true,
+   },
    startDateTime: {
       type: Date,
       required: true,
