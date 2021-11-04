@@ -10,6 +10,10 @@ router.get('/result', async (req, res) => {
    res.render('result.ejs');
 });
 
+router.get('/testAttempt', async (req, res) => {
+   res.render('testAttemptPage.ejs');
+});
+
 router.get('/tests/:testid', async (req, res) => {
    const testid = req.params.testid;
 
