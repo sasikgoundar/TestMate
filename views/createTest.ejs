@@ -16,9 +16,43 @@
                     </svg> New Question </button>
                 <hr>
 
-                <h4 class="text-left mb-3 pl-3">Total questions : 6</h4>
+                <div class="mb-5" style="display: flex; justify-content: space-between; font-size: 1.3rem;">
+
+                    <span>Total questions: <span class="badge badge-primary">6</span></span>
+                    <span> Total marks: <span class="badge badge-primary">30</span></span>
+                </div>
 
                 <ul style="list-style-type: none" id="questions" class="container">
+                    <li>
+                        <button id="questionno" class="bg-light text-dark mb-2">
+                            Question 1
+                        </button>
+                    </li>
+                    <li>
+                        <button id="questionno" class="bg-light text-dark mb-2">
+                            Question 1
+                        </button>
+                    </li>
+                    <li>
+                        <button id="questionno" class="bg-light text-dark mb-2">
+                            Question 1
+                        </button>
+                    </li>
+                    <li>
+                        <button id="questionno" class="bg-light text-dark mb-2">
+                            Question 1
+                        </button>
+                    </li>
+                    <li>
+                        <button id="questionno" class="bg-light text-dark mb-2">
+                            Question 1
+                        </button>
+                    </li>
+                    <li>
+                        <button id="questionno" class="bg-light text-dark mb-2">
+                            Question 1
+                        </button>
+                    </li>
                     <li>
                         <button id="questionno" class="bg-light text-dark mb-2">
                             Question 1
@@ -110,12 +144,27 @@
                             </div>
                         </div>
                     </div>
-                    <a type="button" href="" class="btn btn-outline-primary mt-5 mr-3">
-                        Save Question
-                    </a>
-                    <a type="button" href="" class="btn btn-danger mt-5 text-right">
-                        Discard Question
-                    </a>
+                    <div class="question-bottom">
+                        <div class="input-group" style="align-items: end;">
+                            <div class="input-group-prepend">
+                                <span style="font-size: 1em;" class="input-group-text">
+                                    Marks
+                                </span>
+                            </div>
+                            <input id="marks" type="number" class="form-control"
+                                style="flex-grow: 0.2; margin-right: auto;" value="5" />
+                            <div class="float-right">
+                                <a type="button" href="" class="btn btn-outline-primary mt-5 mr-3">
+                                    Save Question
+                                </a>
+                                <a type="button" href="" class="btn btn-danger mt-5 text-right">
+                                    Discard Question
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
 
 

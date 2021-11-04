@@ -8,7 +8,7 @@ const testRoutes = require('./routes/test');
 const Test = require('./models/Test');
 const moment = require('moment');
 
-connectDB();
+// connectDB();
 
 app.use(express.json());
 app.engine('ejs', ejsMate);

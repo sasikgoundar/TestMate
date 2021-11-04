@@ -1,19 +1,24 @@
 #questions {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: 0.5rem;
-  overflow-x: hidden;
-  overflow-y: auto;
+   position: relative;
+   top: 0;
+   height: calc(100vh - 48px);
+   padding-top: 0.5rem;
+   overflow-x: hidden;
+   overflow-y: auto;
 }
 
 #questionno {
-  width: 100%;
-  padding: 15px;
-  border: solid rgba(0, 0, 0, 0.279) 0.7px;
+   width: 100%;
+   padding: 15px;
+   border: solid rgba(0, 0, 0, 0.279) 0.7px;
 }
 
 .correct {
-  background-color: #00b89f !important;
-  color: #ffffff;
+   background-color: #00b89f !important;
+   color: #ffffff;
+}
+
+.wrong {
+   background-color: #ff4848 !important;
+   color: #ffffff;
 }
