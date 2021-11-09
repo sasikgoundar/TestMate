@@ -62,6 +62,7 @@ router.get('/tests/:testid', async (req, res) => {
          marks += originalQuestions[i].mark;
       } else {
          wrongQuestions.push(submittedQuestions[i].questionId);
+         marks -= foundTest.negativeMarks;
          console.log('wrong');
       }
    }

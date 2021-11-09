@@ -24,21 +24,27 @@ app.use(
 
 app.post('/testing', (req, res) => {
    console.log(req.body.test);
-   const start = moment(
-      req.body.test.startdatetime,
-      'DD-MM-YYYY hh:mm',
-   ).toDate();
-   const last = moment(req.body.test.lastdatetime, 'DD-MM-YYYY hh:mm').toDate();
+   const test = req.body.test;
+   const start = moment(test.startdatetime, 'DD-MM-YYYY hh:mm').toDate();
+   const last = moment(test.lastdatetime, 'DD-MM-YYYY hh:mm').toDate();
    // console.log(myDate);
-   const test = {
-      testName: req.body.test.testname,
+
+   // const totalmarks =
+   let negmarks;
+   if (test.negmarks == 'No') negmarks = 0;
+   else negmarks = int(test.negmarks);
+
+   const newtest = {
+      testName: test.testname,
       questions: ['6177b09987796bd08b853611', '6177b0ee2c41c465a9289cab'],
       startDateTime: start,
       endDateTime: last,
-      timeLimit: req.body.test.timelimit,
+      timeLimit: test.timelimit,
+      negativeMarks: negmarks,
+      totalMarks: totalmarks,
    };
 
-   Test.create(test, function (err, newlyCreated) {
+   Test.create(newtest, function (err, newlyCreated) {
       if (err) {
          console.log(err);
       } else {
