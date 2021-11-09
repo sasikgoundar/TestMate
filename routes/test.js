@@ -4,13 +4,49 @@ const Test = require('../models/Test');
 const Result = require('../models/Result');
 const Leaderboard = require('../models/Leaderboard');
 const User = require('../models/User');
+const moment = require('moment');
 // const mongoose = require('mongoose');
+
+router.get('/create_test', (req, res) => {
+   res.render('createTest.ejs');
+});
 
 router.get('/result', async (req, res) => {
    res.render('result.ejs');
 });
 
-router.get('/testAttempt', async (req, res) => {
+router.get('/attemptTest/:testid', async (req, res) => {
+   const testid = req.params.testid;
+
+   const foundTest = await Test.findById(testid);
+
+   // console.log(Date.now());
+   // console.log(foundTest.startDateTime);
+   // console.log(Date.now() <= foundTest.startDateTime);
+
+   if (Date.now() < foundTest.startDateTime) {
+      const time = moment(foundTest.startDateTime).format(
+         'MMMM Do YYYY, h:mm a',
+      );
+      console.log(time);
+      //test not started yet
+      return res.render('testUnavailable.ejs', {
+         msg1: 'Test Has Not Started Yet!',
+         msg2: 'It will start at',
+         time: time,
+      });
+   }
+   if (Date.now() >= foundTest.endDateTime) {
+      time = moment(foundTest.endDateTime).format('MMMM Do YYYY, h:mm a');
+      console.log(time);
+      //test finished
+      return res.render('testUnavailable.ejs', {
+         msg1: 'Test Has Ended!',
+         msg2: 'It had ended on',
+         time: time,
+      });
+   }
+   //test is available
    res.render('testAttemptPage.ejs');
 });
 
