@@ -5,8 +5,13 @@ const Leaderboard = require('../models/Leaderboard');
 router.get('/', (req, res) => {
    res.render('landing.ejs');
 });
+
 router.get('/signin', (req, res) => {
    res.render('signin.ejs');
+});
+
+router.get('/home', (req, res) => {
+   res.render('home.ejs');
 });
 
 router.get('/profile', (req, res) => {
