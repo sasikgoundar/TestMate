@@ -4,27 +4,73 @@ const Test = require('../models/Test');
 const Result = require('../models/Result');
 const Leaderboard = require('../models/Leaderboard');
 const User = require('../models/User');
+const Question = require('../models/Question');
 const moment = require('moment');
 // const mongoose = require('mongoose');
 
-router.get('/create_test', (req, res) => {
+router.get('/createTest', (req, res) => {
    res.render('createTest.ejs');
+});
+
+router.post('/createTest', async (req, res) => {
+   const submittedTest = req.body;
+
+   const start = moment(
+      submittedTest.startdatetime,
+      'DD-MM-YYYY hh:mm',
+   ).toDate();
+   const last = moment(submittedTest.lastdatetime, 'DD-MM-YYYY hh:mm').toDate();
+   // console.log(myDate);
+
+   // const totalmarks =
+   var negmarks;
+   if (submittedTest.negmarks == 'No') negmarks = 0;
+   else negmarks = parseInt(submittedTest.negmarks);
+
+   let questionIds = [];
+
+   for (var i = 0; i < submittedTest.questions.length; i++) {
+      let newQues = new Question({
+         title: submittedTest.questions[i].title,
+         optionA: submittedTest.questions[i].optionA,
+         optionB: submittedTest.questions[i].optionB,
+         optionC: submittedTest.questions[i].optionC,
+         optionD: submittedTest.questions[i].optionD,
+         correctOption: submittedTest.questions[i].correctOption,
+         mark: submittedTest.questions[i].mark,
+      });
+      const createdQuestion = await newQues.save();
+      questionIds.push(createdQuestion._id);
+   }
+   console.log('negmarks');
+   console.log(negmarks);
+   let newTest = new Test({
+      testName: submittedTest.testname,
+      startDateTime: start,
+      endDateTime: last,
+      timeLimit: submittedTest.timelimit,
+      negativeMarks: negmarks,
+      totalMarks: submittedTest.totalMarks,
+      questions: questionIds,
+   });
+
+   let createdTest = await newTest.save();
+   console.log(createdTest._id);
+   res.json(createdTest._id);
 });
 
 router.get('/result', async (req, res) => {
    res.render('result.ejs');
 });
 
-router.get('/getQuestions/:testid', async (req, res) => {
-   const testid = req.params.testid;
-   const foundTest = await Test.findById(testid).populate('questions');
-   res.json(foundTest);
-});
-
 router.get('/attemptTest/:testid', async (req, res) => {
    const testid = req.params.testid;
 
    const foundTest = await Test.findById(testid);
+
+   if (!foundTest) {
+      return res.send('No test found');
+   }
 
    // console.log(Date.now());
    // console.log(foundTest.startDateTime);
@@ -61,6 +107,19 @@ router.get('/attemptTest/:testid', async (req, res) => {
    });
 });
 
+router.get('/getQuestions/:testid', async (req, res) => {
+   const testid = req.params.testid;
+   const foundTest = await Test.findById(testid).populate('questions');
+   res.json(foundTest);
+});
+
+router.get('/getResult/:resultid', async (req, res) => {
+   const resultid = req.params.resultid;
+   const foundResult = await Result.findById(resultid);
+   console.log(foundResult);
+   res.json(foundResult);
+});
+
 router.post('/attemptTest/:testid', async (req, res) => {
    console.log('post route called!');
    const testid = req.params.testid;
@@ -90,7 +149,7 @@ router.post('/attemptTest/:testid', async (req, res) => {
    // ];
 
    // fetch other user details
-   const userid = '61bc331d68f6f69fbba2c523';
+   const userid = '61bc63ed1bbb751acec25497';
    // const userid = req.user;
 
    //compute score

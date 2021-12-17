@@ -2,384 +2,46 @@
 
 <link
    rel="stylesheet"
-   href="./javascripts/jquery-datetimepicker/jquery.datetimepicker.css"
+   href="../javascripts/jquery-datetimepicker/jquery.datetimepicker.css"
 />
 <link rel="stylesheet" href="../stylesheets/createTest.css" />
-<link
-   rel="stylesheet"
-   type="text/css"
-   href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
 
-<!-- Modal -->
-<div
-   class="modal fade"
-   id="exampleModal"
-   tabindex="-1"
-   aria-labelledby="exampleModalLabel"
-   aria-hidden="true"
->
-   <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">SUCCESS</h5>
-            <button
-               type="button"
-               class="close"
-               data-dismiss="modal"
-               aria-label="Close"
-            >
-               <span aria-hidden="true">&times;</span>
-            </button>
-         </div>
-         <div class="modal-body text-center">
-            <div class="alert alert-success">TEST HAS BEEN CREATED.</div>
-         </div>
-         <div class="modal-footer text-center" style="display: block">
-            <p>CODE FOR JOINING THE TEST :</p>
-            <div style="font-size: 2.5rem; display: inline-block">
-               <span id="copyText">qwdqadwq7464</span>
-               <input
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="copyLink()"
-                  data-toggle="tooltip"
-                  title="Copy to Clipboard"
-                  value="Copy"
-                  readonly
-               />
-            </div>
+<%#- include('partials/navbar')%>
 
-            <script>
-               function copyLink() {
-                  let copyText = document.getElementById('copyText');
+<!-- We will put our React component inside this div. -->
+<div id="root"></div>
 
-                  var selection = window.getSelection();
+<!-- Load React. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script
+   src="https://unpkg.com/react@16/umd/react.development.js"
+   crossorigin
+></script>
+<script
+   src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+   crossorigin
+></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script
+   src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"
+   integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+></script>
 
-                  var range = document.createRange();
+<script src="../javascripts/jquery-datetimepicker/jquery.datetimepicker.js"></script>
 
-                  range.selectNodeContents(copyText);
-
-                  selection.removeAllRanges();
-
-                  selection.addRange(range);
-
-                  document.execCommand('copy');
-                  alert('copied!');
-               }
-            </script>
-         </div>
-      </div>
-   </div>
-</div>
-<button
-   type="button"
-   class="btn btn-primary"
-   data-toggle="modal"
-   data-target="#exampleModal"
->
-   Launch demo modal
-</button>
-
-<!-- question div -->
-<div class="container-fluid">
-   <div class="row">
-      <div class="container col-md-3 border border-black pt-4 text-center">
-         <button id="add-question" class="btn btn-outline-primary">
-            <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="16"
-               height="16"
-               fill="currentColor"
-               class="bi bi-plus-circle"
-               viewBox="0 0 15 17"
-            >
-               <path
-                  d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-               />
-               <path
-                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-               />
-            </svg>
-            New Question
-         </button>
-         <hr />
-
-         <div
-            class="mb-5"
-            style="
-               display: flex;
-               justify-content: space-between;
-               font-size: 1.3rem;
-            "
-         >
-            <span
-               >Total questions:
-               <span class="badge badge-primary">6</span></span
-            >
-            <span>
-               Total marks: <span class="badge badge-primary">30</span></span
-            >
-         </div>
-
-         <ul style="list-style-type: none" id="questions" class="container">
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-            <li>
-               <button id="questionno" class="bg-light text-dark mb-2">
-                  Question 1
-               </button>
-            </li>
-         </ul>
-      </div>
-
-      <div class="col-md-9 mt-3">
-         <!-- question div -->
-
-         <div class="container">
-            <h4 class="mb-3">Question 1</h4>
-
-            <textarea
-               id="question-area"
-               class="form-control mb-5"
-               id="exampleFormControlTextarea1 "
-               rows="6 "
-               placeholder="Enter your question here.... "
-            ></textarea>
-
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="input-group input-group-lg">
-                     <div class="input-group-prepend">
-                        <span style="font-size: 1em" class="input-group-text">
-                           Option A
-                        </span>
-                     </div>
-                     <input id="option1" type="text" class="form-control" />
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="input-group input-group-lg">
-                     <div class="input-group-prepend">
-                        <span style="font-size: 1em" class="input-group-text">
-                           Option A
-                        </span>
-                     </div>
-                     <input id="option1" type="text" class="form-control" />
-                  </div>
-               </div>
-            </div>
-
-            <div class="row mt-5">
-               <div class="col-md-6">
-                  <div class="input-group input-group-lg">
-                     <div class="input-group-prepend">
-                        <span style="font-size: 1em" class="input-group-text">
-                           Option A
-                        </span>
-                     </div>
-                     <input id="option1" type="text" class="form-control" />
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div class="input-group input-group-lg">
-                     <div class="input-group-prepend">
-                        <span style="font-size: 1em" class="input-group-text">
-                           Option A
-                        </span>
-                     </div>
-                     <input id="option1" type="text" class="form-control" />
-                  </div>
-               </div>
-            </div>
-            <div class="question-bottom">
-               <div class="input-group" style="align-items: end">
-                  <div class="input-group-prepend">
-                     <span style="font-size: 1em" class="input-group-text">
-                        Marks
-                     </span>
-                  </div>
-                  <input
-                     id="marks"
-                     type="number"
-                     class="form-control"
-                     style="flex-grow: 0.2; margin-right: auto"
-                     value="5"
-                  />
-                  <div class="float-right">
-                     <a
-                        type="button"
-                        href=""
-                        class="btn btn-outline-primary mt-5 mr-3"
-                     >
-                        Save Question
-                     </a>
-                     <a
-                        type="button"
-                        href=""
-                        class="btn btn-danger mt-5 text-right"
-                     >
-                        Discard Question
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
-
-         <hr />
-         <div class="container">
-            <h3 class="mb-4">Test Settings</h3>
-            <form action="/testing" method="post">
-               <div class="row">
-                  <div class="col-md-4">
-                     <label for="date" class="form-label"
-                        >Test Name<span class="text-danger">*</span></label
-                     >
-                     <input
-                        class="form-control"
-                        name="test[testname]"
-                        required
-                     />
-                  </div>
-
-                  <div class="col-md-3">
-                     <label for="date" class="form-label"
-                        >Start-DateTime<span class="text-danger">*</span></label
-                     >
-                     <input
-                        class="form-control"
-                        id="datetimepickerstart"
-                        name="test[startdatetime]"
-                        required
-                     />
-                  </div>
-                  <div class="col-md-3">
-                     <label for="date" class="form-label"
-                        >Last-DateTime<span class="text-danger">*</span></label
-                     >
-                     <input
-                        class="form-control"
-                        id="datetimepickerend"
-                        name="test[lastdatetime]"
-                        required
-                     />
-                  </div>
-
-                  <div class="col-md-2">
-                     <label for="date" class="form-label"
-                        >Time-Limit (minutes)<span class="text-danger"
-                           >*</span
-                        ></label
-                     >
-                     <input
-                        class="form-control"
-                        type="number"
-                        name="test[timelimit]"
-                        required
-                     />
-                  </div>
-                  <div class="col-md-3 mt-3">
-                     <label for="exampleFormControlSelect1"
-                        >Negative Marking</label
-                     >
-                     <select
-                        class="form-control"
-                        id="exampleFormControlSelect1"
-                        name="test[negmarks]"
-                     >
-                        <option selected>No</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                     </select>
-                  </div>
-               </div>
-               <button type="submit" class="btn btn-primary mt-4 pl-4 pr-4">
-                  SAVE TEST
-               </button>
-            </form>
-         </div>
-      </div>
-   </div>
-</div>
-
-<!-- <script src="./javascripts/jquery-timepicker-1.3.5/jquery.timepicker.min.js"></script> -->
-
-<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-
-<script src="./javascripts/jquery-datetimepicker/jquery.datetimepicker.js"></script>
+<!-- Load our React component. -->
+<script type="text/babel" src="../components/CreateTest.js"></script>
 
 <script>
-   $('#datetimepickerstart').datetimepicker({
-      format: 'd/m/Y H:i',
-   });
+   setTimeout(() => {
+      $('#datetimepickerstart').datetimepicker({
+         format: 'd/m/Y H:i',
+      });
 
-   $('#datetimepickerend').datetimepicker({
-      format: 'd/m/Y H:i',
-   });
+      $('#datetimepickerend').datetimepicker({
+         format: 'd/m/Y H:i',
+      });
+   }, 5000);
 </script>
-
-<!-- $(document).ready(function () {
-    $('input.timepicker').timepicker({
-    timeFormat: 'hh:mm p',
-    interval: 60,
-    defaultTime: 'now',
-    dynamic: true,
-    dropdown: true,
-    scrollbar: false
-    });
-    }); -->
