@@ -47,7 +47,6 @@ connectDB();
 // const user1 = {
 //    emailId: 'm@g.com',
 //    fullName: 'meet g',
-//    previousResults: [],
 // };
 
 // User.create(user1, function (err, newlyCreated) {

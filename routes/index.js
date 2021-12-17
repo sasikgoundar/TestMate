@@ -22,9 +22,9 @@ router.get('/create_test', (req, res) => {
    res.render('createTest.ejs');
 });
 
-router.get('/leaderboard/:leaderboardid', async (req, res) => {
-   const leaderboardId = req.params.leaderboardid;
-   const foundLeaderboard = await Leaderboard.findById(leaderboardId)
+router.get('/leaderboard/:testid', async (req, res) => {
+   const testid = req.params.testid;
+   const foundLeaderboard = await Leaderboard.findOne({ testId: testid })
       .populate('testId', ['testName', 'totalParticipants'])
       .populate('results', ['percentScore', 'userfullname', 'userId']);
 

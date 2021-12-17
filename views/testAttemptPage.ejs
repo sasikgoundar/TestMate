@@ -3,209 +3,26 @@
     <link rel="stylesheet" href="../stylesheets/createTest.css">
     <link rel="stylesheet" href="../stylesheets/testAttemptPage.css">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="container col-md-3 border border-black pt-4 text-center">
-                <input type="hidden" id="set-time" value="1" />
-                <div id="countdown">
+    <%#- include('partials/navbar')%>
 
-                    <div id='tiles' class="color-full"></div>
-                    <div class="countdown-label">Time Remaining</div>
-                </div>
-                <hr>
+        <!-- We will put our React component inside this div. -->
+        <div id="root"></div>
 
-                <div class="mb-3" style="display: flex; justify-content: space-between; font-size: 1.3rem;">
+        <!-- Load React. -->
+        <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"
+            integrity="sha512-u9akINsQsAkG9xjc1cnGF4zw5TFDwkxuc9vUp5dltDWYCSmyd0meygbvgXrlc/z7/o4a19Fb5V0OUE58J7dcyw=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-                    <span>Total questions: <span class="badge badge-primary">10</span></span>
-                    <span> Total marks: <span class="badge badge-primary">50</span></span>
-                </div>
+        <script>
+            const testId = '<%-testId%>'
+            const testName = '<%-testName%>'
+            const negativeMarks = '<%-negativeMarks%>'
+            const timeLimit = <%-timeLimit%>
+        </script>
 
-                <ul style="list-style-type: none" id="questions" class="container">
-                    <li>
-                        <button id="questionno" class="bg-light mb-2 correct">
-                            Question 1
-                        </button>
-                    </li>
-                    <li>
-                        <button id="questionno" class="bg-light  mb-2 correct">
-                            Question 1
-                        </button>
-                    </li>
-                    <li>
-                        <button id="questionno" class="bg-light  mb-2">
-                            Question 1
-                        </button>
-                    </li>
-                    <li>
-                        <button id="questionno" class="bg-light  mb-2">
-                            Question 1
-                        </button>
-                    </li>
-                    <li>
-                        <button id="questionno" class="bg-light mb-2">
-                            Question 1
-                        </button>
-                    </li>
-                    <li>
-                        <button id="questionno" class="bg-light  mb-2">
-                            Question 1
-                        </button>
-                    </li>
-                </ul>
-
-            </div>
-
-            <div class="col-md-9 mt-3">
-
-
-                <div class="container">
-
-                    <h2 class="text-center">Test Name Goes Here</h2>
-
-                    <hr>
-                    <div class="mb-3" style="display: flex; justify-content: space-between;">
-
-                        <span style="font-size: 1.4rem; font-weight: 600;">Question 1</span>
-                        <span class="pt-2 pr-1 text-large"> <span class="badge badge-primary">5</span> Marks</span>
-                    </div>
-
-                    <textarea id="question-area" class="form-control mb-5" id="exampleFormControlTextarea1 " rows="6 "
-                        placeholder="Enter your question here.... "></textarea>
-
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-group input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span style="font-size: 1em;" class="input-group-text">
-                                        Option A
-                                    </span>
-                                </div>
-                                <span id="option1" class="form-control"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span style="font-size: 1em;" class="input-group-text">
-                                        Option A
-                                    </span>
-                                </div>
-                                <span id="option1" class="form-control"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mt-5">
-                        <div class="col-md-6">
-                            <div class="input-group input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span style="font-size: 1em;" class="input-group-text">
-                                        Option A
-                                    </span>
-                                </div>
-                                <span id="option1" class="form-control"></span>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group input-group-lg">
-                                <div class="input-group-prepend">
-                                    <span style="font-size: 1em;" class="input-group-text">
-                                        Option A
-                                    </span>
-                                </div>
-                                <span id="option1" class="form-control"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <a type="button" href="" class="btn btn-outline-primary mt-5">
-                        Save Answer
-                    </a>
-                </div>
-
-
-                <hr>
-
-                <div class="text-center">
-                    <a type="button" href="" class="btn btn-primary mt-2" style="width: 50%;">
-                        SUBMIT TEST
-                    </a>
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <script>
-
-        //  https://www.jqueryscript.net/time-clock/Clean-jQuery-Date-Time-Picker-Plugin-datetimepicker.html
-
-        // $(document).ready(function () {
-        //     $('input.timepicker').timepicker({
-        //         timeFormat: 'hh:mm p',
-        //         interval: 60,
-        //         defaultTime: 'now',
-        //         dynamic: true,
-        //         dropdown: true,
-        //         scrollbar: false
-        //     });
-        // });
-
-
-        //COUNTDOWN TIMER
-        var minutes = $('#set-time').val();
-
-        var target_date = new Date().getTime() + ((minutes * 60) * 1000); // set the countdown date
-        var time_limit = ((minutes * 60) * 1000);
-        //set actual timer
-        setTimeout(
-            function () {
-                alert('done');
-            }, time_limit);
-
-        var days, hours, minutes, seconds; // variables for time units
-
-        var countdown = document.getElementById("tiles"); // get tag element
-
-        getCountdown();
-
-        setInterval(function () { getCountdown(); }, 1000);
-
-        function getCountdown() {
-
-            // find the amount of "seconds" between now and target
-            var current_date = new Date().getTime();
-            var seconds_left = (target_date - current_date) / 1000;
-
-            if (seconds_left >= 0) {
-                console.log(time_limit);
-                if ((seconds_left * 1000) < (time_limit / 2)) {
-                    $('#tiles').removeClass('color-full');
-                    $('#tiles').addClass('color-half');
-
-                }
-                if ((seconds_left * 1000) < (time_limit / 4)) {
-                    $('#tiles').removeClass('color-half');
-                    $('#tiles').addClass('color-empty');
-                }
-
-                days = pad(parseInt(seconds_left / 86400));
-                seconds_left = seconds_left % 86400;
-
-                hours = pad(parseInt(seconds_left / 3600));
-                seconds_left = seconds_left % 3600;
-
-                minutes = pad(parseInt(seconds_left / 60));
-                seconds = pad(parseInt(seconds_left % 60));
-
-                // format countdown string + set tag value
-                countdown.innerHTML = "<span>" + hours + ":</span><span>" + minutes + ":</span><span>" + seconds + "</span>";
-            }
-        }
-        function pad(n) {
-            return (n < 10 ? '0' : '') + n;
-        }
-    </script>
+        <!-- Load our React component. -->
+        <script type="text/babel" src="../components/AttemptTest.js"></script>
