@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') %>
+    <%#- include('partials/navbar')%>
+
+        <link rel="stylesheet" href="../stylesheets/testUnavailable.css">
+
+
+        <section id='section1'>
+
+            <div class="container2" style="text-align: center;">
+                <div class="container1">
+
+                    <h1 style="color:#696969;">Test Created Successfully!</h1>
+                    <hr>
+                    <p class="para">
+                        CODE FOR JOINING THE TEST :
+                    </p>
+                    <hr>
+                    <h2 id="copyText">
+                        <%=testid%>
+                    </h2>
+                    <input
+                  type="button"
+                  class="btn btn-primary"
+                  onclick="copyLink()"
+                  data-toggle="tooltip"
+                  title="Copy to Clipboard"
+                  value="Copy"
+                  readonly
+               />
+            </div>
+
+            <script>
+               function copyLink() {
+                  let copyText = document.getElementById('copyText');
+
+                  var selection = window.getSelection();
+
+                  var range = document.createRange();
+
+                  range.selectNodeContents(copyText);
+
+                  selection.removeAllRanges();
+
+                  selection.addRange(range);
+
+                  document.execCommand('copy');
+                  alert('copied!');
+               }
+            </script>
+
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
