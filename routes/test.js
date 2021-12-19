@@ -8,6 +8,14 @@ const Question = require('../models/Question');
 const moment = require('moment');
 // const mongoose = require('mongoose');
 
+const isLoggedIn = (req, res, next) => {
+   if (!req.isAuthenticated()) {
+      req.flash('danger', 'Please Log In First!');
+      return res.redirect('/signin');
+   }
+   next();
+};
+
 router.get('/createTest', (req, res) => {
    res.render('createTest.ejs');
 });

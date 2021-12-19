@@ -5,6 +5,14 @@ const Result = require('../models/Result');
 const Test = require('../models/Test');
 const User = require('../models/User');
 
+const isLoggedIn = (req, res, next) => {
+   if (!req.isAuthenticated()) {
+      req.flash('danger', 'Please Log In First!');
+      return res.redirect('/signin');
+   }
+   next();
+};
+
 router.get('/', (req, res) => {
    res.render('landing.ejs');
 });
@@ -31,11 +39,7 @@ router.get('/results/:resultid', async (req, res) => {
    });
 });
 
-router.get('/signin', (req, res) => {
-   res.render('signin.ejs');
-});
-
-router.get('/home', (req, res) => {
+router.get('/home', isLoggedIn, (req, res) => {
    res.render('home.ejs');
 });
 

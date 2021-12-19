@@ -3,10 +3,14 @@ const app = express();
 const connectDB = require('./config/db');
 const path = require('path');
 const ejsMate = require('ejs-mate');
+const authRoutes = require('./routes/auth');
 const indexRoutes = require('./routes/index');
 const testRoutes = require('./routes/test');
-const Test = require('./models/Test');
-const moment = require('moment');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const session = require('express-session');
+const flash = require('connect-flash');
+const User = require('./models/User');
 
 connectDB();
 
@@ -15,46 +19,44 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public'))); //for serving static files
-
+app.use(flash());
 app.use(
    express.urlencoded({
       extended: true,
    }),
 ); //for parsing form data
 
-app.post('/testing', (req, res) => {
-   console.log(req.body.test);
-   const test = req.body.test;
-   const start = moment(test.startdatetime, 'DD-MM-YYYY hh:mm').toDate();
-   const last = moment(test.lastdatetime, 'DD-MM-YYYY hh:mm').toDate();
-   // console.log(myDate);
+app.use(
+   session({
+      secret: '#secret#',
+      resave: true,
+      saveUninitialized: true,
+   }),
+);
 
-   // const totalmarks =
-   let negmarks;
-   if (test.negmarks == 'No') negmarks = 0;
-   else negmarks = int(test.negmarks);
+//========================PASSPORT SETUP=============================
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
-   const newtest = {
-      testName: test.testname,
-      questions: ['6177b09987796bd08b853611', '6177b0ee2c41c465a9289cab'],
-      startDateTime: start,
-      endDateTime: last,
-      timeLimit: test.timelimit,
-      negativeMarks: negmarks,
-      totalMarks: totalmarks,
-   };
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+//===================================================================
 
-   Test.create(newtest, function (err, newlyCreated) {
-      if (err) {
-         console.log(err);
-      } else {
-         console.log(newlyCreated);
-         //redirect back to items page
-         // res.redirect("/items");
-      }
-   });
+app.use(require('connect-flash')());
+
+app.use(function (req, res, next) {
+   //giving access of loggedIn user to every templates(in views dir)
+   res.locals.currentUser = req.user;
+   //giving access of loggedIn user's notifications to every templates(in views dir) (have to populate first though)
+
+   res.locals.messages = require('express-messages')(req, res);
+   next();
 });
 
+//====================middlewares===================================
+
+app.use('/', authRoutes);
 app.use('/', indexRoutes);
 app.use('/', testRoutes);
 
