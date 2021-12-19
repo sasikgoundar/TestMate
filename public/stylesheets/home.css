@@ -2,23 +2,11 @@
 * {
    box-sizing: border-box;
 }
-body {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin: 0;
-   background-color: #f7f8fc;
-   font-family: 'Roboto', sans-serif;
-   color: #10182f;
-}
-.container {
-   display: flex;
-   width: 1040px;
-   justify-content: space-evenly;
-   flex-wrap: wrap;
+
+.container1 {
+   width: 700px;
 }
 .card {
-   margin: 10px;
    background-color: #fff;
    border-radius: 10px;
    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);

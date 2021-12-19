@@ -1,25 +1,38 @@
 <% layout('layouts/boilerplate') %>
 
-    <%#- include('partials/navbar')%>
+    <%- include('partials/navbar')%>
 
         <link rel="stylesheet" href="../stylesheets/home.css" />
 
-        <div class="card" style="width: 18rem;">
-            <img src="../images/host.png" class="card-img-top" alt="...">
-            <div class="card-body mt-3" style="justify-content: space-around; align-items: center;">
-                <span class="hostjoinbtn hostbtn"><a href="#"></a></span>
-                <p class="card-text text-center">Host a quiz which students will be able to attempt by entering the Quiz
-                    ID.</p>
+        <br><br><br><br>
+        <div class="container container1">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card" style="width: 18rem;">
+                        <img src="../images/host.png" class="card-img-top" alt="...">
+                        <div class="card-body mt-3" style="justify-content: space-around; align-items: center;">
+                            <span class="hostjoinbtn hostbtn"><a href="#"></a></span>
+                            <p class="card-text text-center">Host a quiz which students will be able to attempt by
+                                entering the Quiz
+                                ID.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card pb-2" style="width: 18rem;">
+                        <img src="../images/join.png" class="card-img-top" alt="...">
+                        <div class="card-body" style="justify-content: space-around; align-items: center;">
+                            <span class="hostjoinbtn joinbtn"><a href="#"></a></span>
+                            <p class="card-text text-center">Join a quiz by entering the Quiz ID.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="ml-5 card pb-2" style="width: 18rem;">
-            <img src="../images/join.png" class="card-img-top" alt="...">
-            <div class="card-body" style="justify-content: space-around; align-items: center;">
-                <span class="hostjoinbtn joinbtn"><a href="#"></a></span>
-                <p class="card-text text-center">Join a quiz by entering the Quiz ID.</p>
-            </div>
-        </div>
+
+
+
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -40,6 +53,3 @@
                 </div>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Launch demo modal
-        </button>
