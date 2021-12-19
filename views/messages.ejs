@@ -1,0 +1,15 @@
+<div id="messages" style="margin-bottom: -16px;">
+    <% Object.keys(messages).forEach(function (type) { %> 
+      <% messages[type].forEach(function (message) { %>
+        
+          
+          <% if (type=='error') { %>
+            <div class="alert alert-danger"> <%= message %> </div>
+          <% }else{ %>
+          <div class="alert alert-<%=type%>"> <%= message %> </div>
+          <% } %>
+        
+        
+      <% }) %>
+    <% }) %>
+    </div>

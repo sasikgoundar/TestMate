@@ -1,5 +1,5 @@
 <% layout('layouts/boilerplate') %>
-    <%#- include('partials/navbar')%>
+    <%- include('partials/navbar')%>
 
         <link rel="stylesheet" href="../stylesheets/testUnavailable.css">
 
@@ -18,38 +18,30 @@
                     <h2 id="copyText">
                         <%=testid%>
                     </h2>
-                    <input
-                  type="button"
-                  class="btn btn-primary"
-                  onclick="copyLink()"
-                  data-toggle="tooltip"
-                  title="Copy to Clipboard"
-                  value="Copy"
-                  readonly
-               />
-            </div>
-
-            <script>
-               function copyLink() {
-                  let copyText = document.getElementById('copyText');
-
-                  var selection = window.getSelection();
-
-                  var range = document.createRange();
-
-                  range.selectNodeContents(copyText);
-
-                  selection.removeAllRanges();
-
-                  selection.addRange(range);
-
-                  document.execCommand('copy');
-                  alert('copied!');
-               }
-            </script>
-
+                    <input type="button" class="btn btn-primary mb-3" onclick="copyLink()" data-toggle="tooltip"
+                        title="Copy to Clipboard" value="Copy" readonly />
                 </div>
+
+                <script>
+                    function copyLink() {
+                        let copyText = document.getElementById('copyText');
+
+                        var selection = window.getSelection();
+
+                        var range = document.createRange();
+
+                        range.selectNodeContents(copyText);
+
+                        selection.removeAllRanges();
+
+                        selection.addRange(range);
+
+                        document.execCommand('copy');
+                        alert('Test ID copied!');
+                    }
+                </script>
+
             </div>
+
         </section>
-        <br>
         <br>
