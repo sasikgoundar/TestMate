@@ -1,277 +1,349 @@
-<% layout('layouts/boilerplate') %>
+<% layout('layouts/boilerplate') %> <%- include('partials/navbar')%>
 
-<%- include('partials/navbar')%>
+<link rel="stylesheet" href="../stylesheets/profile.css" />
 
-    <link rel="stylesheet" href="../stylesheets/profile.css" />
-
-    <div class="container mt-5">
-        <div class="main-body mb-5">
-            <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                    <div class="card" style="border: 2px solid #e6e9ec;">
-                        <div class="card-body">
-                            <div class="
-                                d-flex
-                                flex-column
-                                align-items-center
-                                text-center
-                            ">
-                                <img src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0="
-                                    alt="profilepic" class="rounded-circle" width="150" />
-                                <div class="mt-3">
-                                    <h4>Rohit Sharma</h4>
-                                    <p class="text-muted font-size-sm">KJSCE</p>
-                                    <p class="text-muted font-size-sm">
-                                        rohitsharma@somaiya.edu
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="uploadBox col-md-8">
-                    <h4 class="color">General Stats</h4>
-                    <hr />
-                    <br />
-                    <div class="row">
-                        <div class="col">
-                            <div class="card border-info bg-light mb-3 text-center" style="max-width: 18rem">
-                                <div class="card-header">Total Tests</div>
-                                <div class="card-body d-flex justify-content-center">
-                                    <h3>59</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card border-warning bg-light text-center mb-3" style="max-width: 18rem">
-                                <div class="card-header">Average Score</div>
-                                <div class="card-body d-flex justify-content-center">
-                                    <h3>88%</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card border-success bg-light text-center mb-3" style="max-width: 18rem">
-                                <div class="card-header">Highest Score</div>
-                                <div class="card-body d-flex justify-content-center">
-                                    <h3>95%</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mt-3 ml-3">
-                        <div class="col">
-                            <div class="card border-success bg-light text-center mb-3" style="max-width: 18rem">
-                                <div class="card-header">Average Rank</div>
-                                <div class="card-body d-flex justify-content-center">
-                                    <h3>59</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="card border-success bg-light text-center mb-3" style="max-width: 18rem">
-                                <div class="card-header">Best Rank</div>
-                                <div class="card-body d-flex justify-content-center">
-                                    <h3>59</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="container mt-5">
+   <div class="main-body mb-5">
+      <div class="row gutters-sm">
+         <div class="col-md-4 mb-3">
+            <div class="card" style="border: 2px solid #e6e9ec">
+               <div class="card-body">
+                  <div
+                     class="d-flex flex-column align-items-center text-center"
+                  >
+                     <img
+                        src="https://media.istockphoto.com/vectors/default-profile-picture-avatar-photo-placeholder-vector-illustration-vector-id1223671392?k=20&m=1223671392&s=612x612&w=0&h=lGpj2vWAI3WUT1JeJWm1PRoHT3V15_1pdcTn2szdwQ0="
+                        alt="profilepic"
+                        class="rounded-circle"
+                        width="150"
+                     />
+                     <div class="mt-3">
+                        <h4><%= user.fullName%></h4>
+                        <p class="text-muted font-size-sm">
+                           <%= user.university%>
+                        </p>
+                        <p class="text-muted font-size-sm">
+                           <%= user.username%>
+                        </p>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-
-        <hr>
-
-        <h2 style="color: #4e657e; margin-top: 18px">My Progress</h2>
-
-        <div class="mt-3 mb-5 chart">
-            <canvas id="myChart"></canvas>
-        </div>
-
-        <hr>
-
-        <h2 style="color: #4e657e; margin-top: 32px">My Previous Tests</h2>
-
-        <div class="row mt-5">
-            <div class="col-md-6 mb-5">
-                <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between">
-                        <span style="font-size: 1.2rem; font-weight: 600">JEE Advanced All India Test
-                        </span>
-                        <span>27 Oct, 2020</span>
-                    </div>
-
-                    <div class="card-body">
-                        <table class="table">
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
-                                <td>90 / 100</td>
-                            </tr>
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
-                                <td>120 / 12000</td>
-                            </tr>
-                        </table>
-                        <hr>
-                        <a href="#" class="btn btn-primary" style="width: 100%;">View Test</a>
-                    </div>
-                </div>
+         </div>
+         <div class="uploadBox col-md-8">
+            <h4 class="color">General Stats</h4>
+            <hr />
+            <br />
+            <div class="row">
+               <div class="col">
+                  <div
+                     class="card border-info bg-light mb-3 text-center"
+                     style="max-width: 18rem"
+                  >
+                     <div class="card-header">Total Tests</div>
+                     <div class="card-body d-flex justify-content-center">
+                        <h3><%= user.previousResults.length%></h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="col">
+                  <div
+                     class="card border-warning bg-light text-center mb-3"
+                     style="max-width: 18rem"
+                  >
+                     <div class="card-header">Average Score</div>
+                     <div class="card-body d-flex justify-content-center">
+                        <h3><%= avgScore %></h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="col">
+                  <div
+                     class="card border-success bg-light text-center mb-3"
+                     style="max-width: 18rem"
+                  >
+                     <div class="card-header">Highest Score</div>
+                     <div class="card-body d-flex justify-content-center">
+                        <h3><%= maxScore %></h3>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="col-md-6 mb-5">
-                <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between">
-                        <span style="font-size: 1.2rem; font-weight: 600">JEE Advanced All India Test
-                        </span>
-                        <span>27 Oct, 2020</span>
-                    </div>
-
-                    <div class="card-body">
-                        <table class="table">
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
-                                <td>90 / 100</td>
-                            </tr>
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
-                                <td>120 / 12000</td>
-                            </tr>
-                        </table>
-                        <hr>
-                        <a href="#" class="btn btn-primary" style="width: 100%;">View Test</a>
-                    </div>
-                </div>
+            <div class="row mt-3 ml-3">
+               <div class="col">
+                  <div
+                     class="card border-success bg-light text-center mb-3"
+                     style="max-width: 18rem"
+                  >
+                     <div class="card-header">Average Rank</div>
+                     <div class="card-body d-flex justify-content-center">
+                        <h3><%=avgRank%></h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="col">
+                  <div
+                     class="card border-success bg-light text-center mb-3"
+                     style="max-width: 18rem"
+                  >
+                     <div class="card-header">Best Rank</div>
+                     <div class="card-body d-flex justify-content-center">
+                        <h3><%=bestRank%></h3>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="col-md-6 mb-5">
-                <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between">
-                        <span style="font-size: 1.2rem; font-weight: 600">JEE Advanced All India Test
-                        </span>
-                        <span>27 Oct, 2020</span>
-                    </div>
+         </div>
+      </div>
+   </div>
 
-                    <div class="card-body">
-                        <table class="table">
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
-                                <td>90 / 100</td>
-                            </tr>
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
-                                <td>120 / 12000</td>
-                            </tr>
-                        </table>
-                        <a href="#" class="btn btn-primary">View Test</a>
-                    </div>
-                </div>
+   <hr />
+
+   <h2 style="color: #4e657e; margin-top: 18px">My Progress</h2>
+
+   <div class="mt-3 mb-5 chart">
+      <canvas id="myChart"></canvas>
+   </div>
+
+   <hr />
+
+   <h2 style="color: #4e657e; margin-top: 32px">My Previous Tests</h2>
+   <% tests.forEach(function(item){%>
+   <div class="col-md-6 mb-5">
+      <div class="card">
+         <div
+            class="card-header"
+            style="display: flex; justify-content: space-between"
+         >
+            <span style="font-size: 1.2rem; font-weight: 600"
+               ><%= item.testId.testName%>
+            </span>
+            <span><%=moment(item.created_at).format("MMM Do YY")%></span>
+         </div>
+
+         <div class="card-body">
+            <table class="table">
+               <tr class="test_info">
+                  <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
+                  <td>
+                     <%=item.marksObtained%> / <%= item.testId.totalMarks%>
+                  </td>
+               </tr>
+               <tr class="test_info">
+                  <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
+                  <td><%=rank[++idx]+1%> / <%=tot_ranks[idx]%></td>
+               </tr>
+            </table>
+            <hr />
+            <a href="#" class="btn btn-primary" style="width: 100%"
+               >View Test</a
+            >
+         </div>
+      </div>
+   </div>
+   <%})%>
+   <!-- <div class="row mt-5">
+      <div class="col-md-6 mb-5">
+         <div class="card">
+            <div
+               class="card-header"
+               style="display: flex; justify-content: space-between"
+            >
+               <span style="font-size: 1.2rem; font-weight: 600"
+                  >JEE Advanced All India Test
+               </span>
+               <span>27 Oct, 2020</span>
             </div>
-            <div class="col-md-6 mb-5">
-                <div class="card">
-                    <div class="card-header" style="display: flex; justify-content: space-between">
-                        <span style="font-size: 1.2rem; font-weight: 600">JEE Advanced All India Test
-                        </span>
-                        <span>27 Oct, 2020</span>
-                    </div>
 
-                    <div class="card-body">
-                        <table class="table">
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
-                                <td>90 / 100</td>
-                            </tr>
-                            <tr class="test_info">
-                                <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
-                                <td>120 / 12000</td>
-                            </tr>
-                        </table>
-                        <a href="#" class="btn btn-primary">View Test</a>
-                    </div>
-                </div>
+            <div class="card-body">
+               <table class="table">
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
+                     <td>90 / 100</td>
+                  </tr>
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
+                     <td>120 / 12000</td>
+                  </tr>
+               </table>
+               <hr />
+               <a href="#" class="btn btn-primary" style="width: 100%"
+                  >View Test</a
+               >
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+      <div class="col-md-6 mb-5">
+         <div class="card">
+            <div
+               class="card-header"
+               style="display: flex; justify-content: space-between"
+            >
+               <span style="font-size: 1.2rem; font-weight: 600"
+                  >JEE Advanced All India Test
+               </span>
+               <span>27 Oct, 2020</span>
+            </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"
-        integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <div class="card-body">
+               <table class="table">
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
+                     <td>90 / 100</td>
+                  </tr>
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
+                     <td>120 / 12000</td>
+                  </tr>
+               </table>
+               <hr />
+               <a href="#" class="btn btn-primary" style="width: 100%"
+                  >View Test</a
+               >
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6 mb-5">
+         <div class="card">
+            <div
+               class="card-header"
+               style="display: flex; justify-content: space-between"
+            >
+               <span style="font-size: 1.2rem; font-weight: 600"
+                  >JEE Advanced All India Test
+               </span>
+               <span>27 Oct, 2020</span>
+            </div>
 
-    <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
+            <div class="card-body">
+               <table class="table">
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
+                     <td>90 / 100</td>
+                  </tr>
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
+                     <td>120 / 12000</td>
+                  </tr>
+               </table>
+               <a href="#" class="btn btn-primary">View Test</a>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-6 mb-5">
+         <div class="card">
+            <div
+               class="card-header"
+               style="display: flex; justify-content: space-between"
+            >
+               <span style="font-size: 1.2rem; font-weight: 600"
+                  >JEE Advanced All India Test
+               </span>
+               <span>27 Oct, 2020</span>
+            </div>
 
-        let delayed;
-        var gradient = ctx.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, 'rgba(58,123,213,1)');
-        gradient.addColorStop(1, 'rgba(0,210,255,0.3)');
+            <div class="card-body">
+               <table class="table">
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
+                     <td>90 / 100</td>
+                  </tr>
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
+                     <td>120 / 12000</td>
+                  </tr>
+               </table>
+               <a href="#" class="btn btn-primary">View Test</a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div> -->
 
-        const labels = [
-            'Test 1',
-            'Test 1',
-            'Test 1',
-            'Test 1',
-            'Test 1',
-            'Test 1',
-            'Test 1',
-            'Test 1',
-        ];
-        const data = {
-            labels,
-            datasets: [
-                {
-                    data: [7, 4, 6, 8, 5, 7, 3, 4],
-                    label: 'Score',
-                    fill: true,
-                    backgroundColor: gradient,
-                    borderColor: '#fff',
-                    pointBackgroundColor: 'rgb(189,195,199)',
-                },
-            ],
-        };
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"
+      integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+   ></script>
 
-        const config = {
-            type: 'line',
-            data: data,
-            options: {
-                deferred: {
-                    yOffset: '100%', // defer until 50% of the canvas height are inside the viewport
-                    delay: 500, // delay of 500 ms after the canvas is considered inside the viewport
-                },
-                animation: {
-                    onComplete: () => {
-                        delayed = true;
-                    },
-                    delay: (context) => {
-                        let delay = 0;
-                        if (
-                            context.type === 'data' &&
-                            context.mode === 'default' &&
-                            !delayed
-                        ) {
-                            delay =
-                                context.dataIndex * 300 +
-                                context.datasetIndex * 100;
-                        }
-                        return delay;
-                    },
-                },
+   <script>
+      const ctx = document.getElementById('myChart').getContext('2d');
 
-                radius: 5,
-                hitRadius: 30,
-                hoverRadius: 12,
-                responsive: true,
+      let delayed;
+      var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+      gradient.addColorStop(0, 'rgba(58,123,213,1)');
+      gradient.addColorStop(1, 'rgba(0,210,255,0.3)');
+
+      const labels = [
+         'Test 1',
+         'Test 1',
+         'Test 1',
+         'Test 1',
+         'Test 1',
+         'Test 1',
+         'Test 1',
+         'Test 1',
+      ];
+      const data = {
+         labels,
+         datasets: [
+            {
+               data: [7, 4, 6, 8, 5, 7, 3, 4],
+               label: 'Score',
+               fill: true,
+               backgroundColor: gradient,
+               borderColor: '#fff',
+               pointBackgroundColor: 'rgb(189,195,199)',
             },
-        };
+         ],
+      };
 
-        function isElementVisible(el, holder) {
-            holder = holder || document.body;
-            const { top, bottom, height } = el.getBoundingClientRect();
-            const holderRect = holder.getBoundingClientRect();
+      const config = {
+         type: 'line',
+         data: data,
+         options: {
+            deferred: {
+               yOffset: '100%', // defer until 50% of the canvas height are inside the viewport
+               delay: 500, // delay of 500 ms after the canvas is considered inside the viewport
+            },
+            animation: {
+               onComplete: () => {
+                  delayed = true;
+               },
+               delay: (context) => {
+                  let delay = 0;
+                  if (
+                     context.type === 'data' &&
+                     context.mode === 'default' &&
+                     !delayed
+                  ) {
+                     delay =
+                        context.dataIndex * 300 + context.datasetIndex * 100;
+                  }
+                  return delay;
+               },
+            },
 
-            return top <= holderRect.top
-                ? holderRect.top - top <= height
-                : bottom - holderRect.bottom <= height;
-        }
+            radius: 5,
+            hitRadius: 30,
+            hoverRadius: 12,
+            responsive: true,
+         },
+      };
 
-        if (isElementVisible(document.getElementById('myChart'))) {
-            var myChart = new Chart(ctx, config);
-        }
-    </script>
+      function isElementVisible(el, holder) {
+         holder = holder || document.body;
+         const { top, bottom, height } = el.getBoundingClientRect();
+         const holderRect = holder.getBoundingClientRect();
+
+         return top <= holderRect.top
+            ? holderRect.top - top <= height
+            : bottom - holderRect.bottom <= height;
+      }
+
+      if (isElementVisible(document.getElementById('myChart'))) {
+         var myChart = new Chart(ctx, config);
+      }
+   </script>
+</div>
