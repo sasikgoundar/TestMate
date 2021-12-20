@@ -69,7 +69,7 @@
    color: #545d7a;
 }
 
-.hostjoinbtn {
+.hostbtn {
    position: relative;
    display: inline-flex;
    width: 180px;
@@ -77,7 +77,17 @@
    margin: 0 15px;
    perspective: 1000px;
 }
-.hostjoinbtn a {
+
+.joinbtn {
+   position: relative;
+   display: inline-flex;
+   width: 180px;
+   height: 55px;
+   margin: 0 15px;
+   perspective: 1000px;
+}
+
+.hostbtn a {
    font-size: 19px;
    letter-spacing: 1px;
    transform-style: preserve-3d;
@@ -85,6 +95,16 @@
    transition: transform 0.25s;
    font-family: 'Montserrat', sans-serif;
 }
+
+.joinbtn span {
+   font-size: 19px;
+   letter-spacing: 1px;
+   transform-style: preserve-3d;
+   transform: translateZ(-25px);
+   transition: transform 0.25s;
+   font-family: 'Montserrat', sans-serif;
+}
+
 .hostbtn a:before,
 .hostbtn a:after {
    position: absolute;
@@ -99,8 +119,8 @@
    border-radius: 5px;
 }
 
-.joinbtn a:before,
-.joinbtn a:after {
+.joinbtn span:before,
+.joinbtn span:after {
    position: absolute;
    content: 'JOIN';
    height: 55px;
@@ -113,15 +133,28 @@
    border-radius: 5px;
 }
 
-.hostjoinbtn a:before {
+.hostbtn a:before {
    color: #fff;
    background: #000;
    transform: rotateY(0deg) translateZ(25px);
 }
-.hostjoinbtn a:after {
+.hostbtn a:after {
    color: #000;
    transform: rotateX(90deg) translateZ(25px);
 }
-.hostjoinbtn a:hover {
+.hostbtn a:hover {
+   transform: translateZ(-25px) rotateX(-90deg);
+}
+
+.joinbtn span:before {
+   color: #fff;
+   background: #000;
+   transform: rotateY(0deg) translateZ(25px);
+}
+.joinbtn span:after {
+   color: #000;
+   transform: rotateX(90deg) translateZ(25px);
+}
+.joinbtn span:hover {
    transform: translateZ(-25px) rotateX(-90deg);
 }
