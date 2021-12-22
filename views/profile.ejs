@@ -53,7 +53,7 @@
                   >
                      <div class="card-header">Average Score</div>
                      <div class="card-body d-flex justify-content-center">
-                        <h3><%= avgScore %></h3>
+                        <h3><%= avgScore %>%</h3>
                      </div>
                   </div>
                </div>
@@ -64,7 +64,7 @@
                   >
                      <div class="card-header">Highest Score</div>
                      <div class="card-body d-flex justify-content-center">
-                        <h3><%= maxScore %></h3>
+                        <h3><%= maxScore %>%</h3>
                      </div>
                   </div>
                </div>
@@ -108,40 +108,42 @@
    <hr />
 
    <h2 style="color: #4e657e; margin-top: 32px">My Previous Tests</h2>
-   <% tests.forEach(function(item){%>
-   <div class="col-md-6 mb-5">
-      <div class="card">
-         <div
-            class="card-header"
-            style="display: flex; justify-content: space-between"
-         >
-            <span style="font-size: 1.2rem; font-weight: 600"
-               ><%= item.testId.testName%>
-            </span>
-            <span><%=moment(item.created_at).format("MMM Do YY")%></span>
-         </div>
-
-         <div class="card-body">
-            <table class="table">
-               <tr class="test_info">
-                  <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
-                  <td>
-                     <%=item.marksObtained%> / <%= item.testId.totalMarks%>
-                  </td>
-               </tr>
-               <tr class="test_info">
-                  <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
-                  <td><%=rank[++idx]+1%> / <%=tot_ranks[idx]%></td>
-               </tr>
-            </table>
-            <hr />
-            <a href="#" class="btn btn-primary" style="width: 100%"
-               >View Test</a
+   <div class="row mt-5">
+      <% tests.forEach(function(item){%>
+      <div class="col-md-6 mb-5">
+         <div class="card">
+            <div
+               class="card-header"
+               style="display: flex; justify-content: space-between"
             >
+               <span style="font-size: 1.2rem; font-weight: 600"
+                  ><%= item.testId.testName%>
+               </span>
+               <span><%=moment(item.created_at).format("MMM Do YY")%></span>
+            </div>
+
+            <div class="card-body">
+               <table class="table">
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Score:</th>
+                     <td>
+                        <%=item.marksObtained%> / <%= item.testId.totalMarks%>
+                     </td>
+                  </tr>
+                  <tr class="test_info">
+                     <th style="font-size: 1.2rem; font-weight: 600">Rank:</th>
+                     <td><%=rank[++idx]+1%> / <%=tot_ranks[idx]%></td>
+                  </tr>
+               </table>
+               <hr />
+               <a href="#" class="btn btn-primary" style="width: 100%"
+                  >View Test</a
+               >
+            </div>
          </div>
       </div>
+      <%})%>
    </div>
-   <%})%>
    <!-- <div class="row mt-5">
       <div class="col-md-6 mb-5">
          <div class="card">

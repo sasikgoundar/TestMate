@@ -26,6 +26,7 @@ router.post('/register', async (req, res) => {
 
       res.redirect('/signin');
    } catch (error) {
+      console.log(error);
       req.flash('danger', 'Email is already registered!');
       res.redirect('/signin');
    }

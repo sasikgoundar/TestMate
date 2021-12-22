@@ -14,7 +14,7 @@
                             class="image--cover">
                         <h3 class="text-center">
 
-                            sasiKumar
+                            <%= logged_in_user.fullName %>
 
                         </h3>
                     </div>
@@ -29,7 +29,7 @@
                                 <div class="u-text--small"><b>My Rank</b></div>
                                 <h2>
                                     <b>
-                                        1
+                                        <%= logged_in_rank + 1%>
                                     </b>
                                 </h2>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="u-text--small"><b>My Score</b></div>
                                 <h2>
                                     <b>
-                                        44
+                                        <%=logged_in_percentScore%> %
                                     </b>
                                 </h2>
                             </div>

@@ -18,28 +18,6 @@ router.get('/', (req, res) => {
    res.render('landing.ejs');
 });
 
-// router.get('/test/:user_id', (req, res) => {
-//    const result = {
-//       testId: '61c0486fe021e94992a56dee',
-//       userId: '61bf09b3ac4d120c7881d728',
-//       userfullname: 'Sasii',
-//       submittedQAs: ['61c0486fe021e94992a56dea', '61c0486fe021e94992a56dec'],
-//       correctQues: 1,
-//       wrongQues: 0,
-//       percentScore: 100,
-//       marksObtained: 5,
-//    };
-
-//    Result.create(result, function (err, newly) {
-//       if (err) {
-//          console.log(err);
-//       } else {
-//          console.log(newly);
-//          res.send('Success');
-//       }
-//    });
-// });
-
 router.get('/results/:resultid', async (req, res) => {
    const resultId = req.params.resultid;
    const foundResult = await Result.findById(resultId);
@@ -121,6 +99,8 @@ router.get('/users/:userid', async (req, res) => {
 
 router.get('/leaderboard/:testid', async (req, res) => {
    const testid = req.params.testid;
+   const logged_in_user = await User.findById(req.user._id);
+
    const foundLeaderboard = await Leaderboard.findOne({ testId: testid })
       .populate('testId', ['testName', 'totalParticipants'])
       .populate('results', ['percentScore', 'userfullname', 'userId']);
@@ -129,10 +109,26 @@ router.get('/leaderboard/:testid', async (req, res) => {
       return res.send('NOT FOUND');
    }
 
-   console.log(foundLeaderboard);
+   console.log(foundLeaderboard.results);
+   const results = foundLeaderboard.results;
+
+   var logged_in_percentScore = '-';
+
+   function check(result) {
+      if (result.userId.equals(logged_in_user._id)) {
+         logged_in_percentScore = result.percentScore;
+         return true;
+      }
+   }
+
+   logged_in_rank = results.findIndex(check);
+
    res.render('leaderboard.ejs', {
       test: foundLeaderboard.testId,
       results: foundLeaderboard.results,
+      logged_in_user: logged_in_user,
+      logged_in_rank: logged_in_rank,
+      logged_in_percentScore: logged_in_percentScore,
    });
 });
 
