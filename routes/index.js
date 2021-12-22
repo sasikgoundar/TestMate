@@ -46,7 +46,11 @@ router.get('/test-success/:testid', (req, res) => {
 
 router.get('/users/:userid', async (req, res) => {
    const userid = req.params.userid;
-   const foundUser = await User.findById(userid).populate('previousResults');
+   const foundUser = await User.findById(userid).populate({
+      path: 'previousResults',
+      populate: { path: 'testId' },
+   });
+
    var sum = 0;
    var length = 0;
    var length1 = 0;
@@ -81,6 +85,14 @@ router.get('/users/:userid', async (req, res) => {
       avgRank = avgRank + resultss;
       length1++;
    }
+
+   const labels = [];
+   const graphData = [];
+   foundUser.previousResults.forEach((result) => {
+      labels.push(result.testId.testName);
+      graphData.push(result.percentScore);
+   });
+
    avgRank = avgRank / length1 + 1;
    const avgScore = Number(Number(sum) / Number(length));
    res.render('profile.ejs', {
@@ -94,6 +106,8 @@ router.get('/users/:userid', async (req, res) => {
       tot_ranks: tot_ranks,
       bestRank: bestRank,
       avgRank: avgRank,
+      labels: labels,
+      graphData: graphData,
    });
 });
 

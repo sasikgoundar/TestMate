@@ -270,6 +270,10 @@
    ></script>
 
    <script>
+
+const labels = <%-JSON.stringify(labels)%>;
+const graphData = <%-JSON.stringify(graphData)%>;
+
       const ctx = document.getElementById('myChart').getContext('2d');
 
       let delayed;
@@ -277,21 +281,11 @@
       gradient.addColorStop(0, 'rgba(58,123,213,1)');
       gradient.addColorStop(1, 'rgba(0,210,255,0.3)');
 
-      const labels = [
-         'Test 1',
-         'Test 1',
-         'Test 1',
-         'Test 1',
-         'Test 1',
-         'Test 1',
-         'Test 1',
-         'Test 1',
-      ];
       const data = {
          labels,
          datasets: [
             {
-               data: [7, 4, 6, 8, 5, 7, 3, 4],
+               data: graphData,
                label: 'Score',
                fill: true,
                backgroundColor: gradient,
