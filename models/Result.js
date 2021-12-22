@@ -54,6 +54,11 @@ const ResultSchema = new mongoose.Schema({
       required: true,
    },
    marksObtained: Number,
+   created_at: {
+      type: Date,
+      required: true,
+      default: Date.now,
+   },
 });
 
 const Result = mongoose.model('Result', ResultSchema);

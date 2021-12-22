@@ -158,8 +158,8 @@ router.post('/attemptTest/:testid', async (req, res) => {
    // ];
 
    // fetch other user details
-   const userid = '61bc63ed1bbb751acec25497';
-   // const userid = req.user;
+   // const userid = '61c05275aaa4eec51ccbc372';
+   const userid = req.user;
 
    //compute score
    let correctQuestions = 0;
