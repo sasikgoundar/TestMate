@@ -11,7 +11,7 @@
                     <div class="card" style="width: 18rem;">
                         <img src="../images/host.png" class="card-img-top" alt="...">
                         <div class="card-body mt-3" style="justify-content: space-around; align-items: center;">
-                            <span class="hostjoinbtn hostbtn"><a href="#"></a></span>
+                            <span class="hostbtn"><a href="/createTest"></a></span>
                             <p class="card-text text-center">Host a quiz which students will be able to attempt by
                                 entering the Quiz
                                 ID.</p>
@@ -22,7 +22,9 @@
                     <div class="card pb-2" style="width: 18rem;">
                         <img src="../images/join.png" class="card-img-top" alt="...">
                         <div class="card-body" style="justify-content: space-around; align-items: center;">
-                            <span class="hostjoinbtn joinbtn"><a href="#"></a></span>
+                            <span class="joinbtn">
+                                <span data-toggle="modal" data-target="#exampleModal"></span>
+                            </span>
                             <p class="card-text text-center">Join a quiz by entering the Quiz ID.</p>
                         </div>
                     </div>
@@ -30,14 +32,7 @@
             </div>
         </div>
 
-
-
-
-
         <!-- Modal -->
-
-        <form name="myform" action="" method="get" onsubmit="return onsubmitform()"></form>
-
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -50,7 +45,7 @@
                     <div class="modal-body text-center ">
                         <input type="text" name="quizid" id="quizid" style="width: 70%; height: 40px;">
                         <br><br>
-                        <input class="btn btn-outline-primary" type="submit" value="SUBMIT">
+                        <button onclick="handleClick()" class="btn btn-outline-primary"> SUBMIT </button>
                     </div>
 
                 </div>
@@ -58,13 +53,15 @@
         </div>
 
         <script type="text/javascript">
-            function onsubmitform() {
-                const testid = document.getElementById("quizid").val;
-
-
-                document.myform.action = `/attemptTest/${testid}`;
+            function handleClick() {
+                const testid = document.getElementById("quizid").value;
+                if (testid == "") {
+                    alert("Enter quiz id!")
+                } else {
+                    window.location.href = `/attemptTest/${testid}`
+                }
             }
 
-            return true;
+
 
         </script>

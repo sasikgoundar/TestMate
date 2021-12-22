@@ -6,7 +6,7 @@ const Leaderboard = require('../models/Leaderboard');
 const User = require('../models/User');
 const Question = require('../models/Question');
 const moment = require('moment');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 const isLoggedIn = (req, res, next) => {
    if (!req.isAuthenticated()) {
@@ -74,6 +74,7 @@ router.get('/result', async (req, res) => {
 router.get('/attemptTest/:testid', async (req, res) => {
    const testid = req.params.testid;
 
+   if (!mongoose.isValidObjectId(testid)) return res.send('No test found');
    const foundTest = await Test.findById(testid);
 
    if (!foundTest) {
