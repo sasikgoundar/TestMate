@@ -246,6 +246,7 @@ router.post('/attemptTest/:testid', async (req, res) => {
    }
 
    await foundLeaderboard.save();
+   res.json(newResult._id);
 });
 
 module.exports = router;

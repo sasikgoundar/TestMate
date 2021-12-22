@@ -43,6 +43,11 @@ router.get('/test-success/:testid', (req, res) => {
    const testid = req.params.testid;
    res.render('testCreateSuccess.ejs', { testid });
 });
+router.get('/testattempt-success/:resid', (req, res) => {
+   const resid = req.params.resid;
+   // res.render('testCreateSuccess.ejs', { testid });
+   res.render('testAttemptSuccess.ejs', { resid });
+});
 
 router.get('/users/:userid', async (req, res) => {
    const userid = req.params.userid;

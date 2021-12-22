@@ -131,13 +131,11 @@ function QuestionDetailPanel({ currentQuestion, changeCurrentQuestion }) {
       axios
          .post(`/attemptTest/${testId}`, questions)
          .then((response) => {
-            console.log(response.data);
+            window.location.href = `/testattempt-success/${response.data}`;
          })
          .catch((error) => {
             console.log(error);
          });
-
-      window.location.href = '/home';
    }
 
    const saveAnswerFunc = (quesId, selectedOption) => {
