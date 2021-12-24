@@ -102,7 +102,7 @@ router.get('/users/:userid', async (req, res) => {
       avgRank = avgRank / length1 + 1;
    }
    if (length != 0) {
-      avgScore = Number(Number(sum) / Number(length));
+      avgScore = Number(Number(sum) / Number(length)).toFixed(2);
    }
    if (bestRank == 100000) {
       bestRank = 0;
