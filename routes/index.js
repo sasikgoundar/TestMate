@@ -99,7 +99,7 @@ router.get('/users/:userid', async (req, res) => {
       graphData.push(result.percentScore);
    });
    if (length1 != 0) {
-      avgRank = avgRank / length1 + 1;
+      avgRank = (avgRank / length1 + 1).toFixed(2);
    }
    if (length != 0) {
       avgScore = Number(Number(sum) / Number(length)).toFixed(2);
