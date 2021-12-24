@@ -1,10 +1,9 @@
 # TestMate
 
-An online platform to host / attempt online examinations, quizzes providing automated result generation and assessment with rankings.
+An online platform to host / attempt online examinations/quizzes providing automated result generation and assessment with rankings for each exam.
 
-##### This Project is made under 5th Sem MERN Course.
 
-# Tech Stacks
+# Tech Stack
 
 <span>
 <img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white">
@@ -23,15 +22,18 @@ An online platform to host / attempt online examinations, quizzes providing auto
 
 ## Host
 
--  Host can create and conduct the quiz.
--  Can add negative marks and Time limit for a quiz.
--  Host can specify the duration for the quiz to be live.
+-  Host can create and conduct quizzes by adding questions.
+-  Each question can have different weightage of marks.
+-  Can specify Time limit for the quiz.
+-  Can specify negative marking for the quiz. 
+-  Can specify the duration for the quiz to be live.
 
 ## Student
 
--  Student can attend the quiz using a quiz-id.
--  Student will get detailed analysis of the quiz.
+-  Student can attempt the quiz by entering the quiz-id.
+-  After attempting the quiz, student will get detailed analysis of their result.
 -  Leaderboard for every quiz.
+-  Profile Page having progress graph and other statistics for all the quizzes attempted.
 
 ## Installation
 
@@ -50,7 +52,7 @@ Install Dependencies
 Run the Project
 
 ```bash
-  npm server.js
+  node server.js
 ```
 
 ## Screenshots
@@ -64,6 +66,8 @@ Run the Project
 ![image](https://user-images.githubusercontent.com/56561152/147337140-3adb0742-29f3-4e75-9da9-6452dd532265.png)
 ![image](https://user-images.githubusercontent.com/56561152/147337210-ae155cac-f105-4856-ad22-623e80276ce0.png)
 ![image](https://user-images.githubusercontent.com/56561152/147337294-c49001e1-ca89-475b-b0ae-63c5e9111571.png)
+
+##### This Project is made under 5th SEM MERN Course.
 
 ## Team Members
 
