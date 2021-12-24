@@ -1,9 +1,9 @@
-var questions;
+var fetchedQuestions;
 
 const getQuestions = async () => {
    try {
       let response = await axios.get(`/getQuestions/${testId}`);
-      questions = response.data.questions;
+      fetchedQuestions = response.data.questions;
       // console.log(questions);
    } catch (err) {
       console.log(err);
@@ -48,6 +48,10 @@ getQuestions().then(() => {
 // ];
 
 function AttemptTest() {
+   const [questions, setQuestions] = React.useState(fetchedQuestions);
+   console.log('questions');
+   console.log(questions);
+
    const [currentQuestion, setCurrentQuestion] = React.useState(0);
    // const [showScore, setShowScore] = React.useState(false);
 
@@ -55,11 +59,36 @@ function AttemptTest() {
       setCurrentQuestion(quesno);
    }
 
+   const saveAnswerFunc = (quesId, selectedOption) => {
+      if (!selectedOption) {
+         alert('Please select an option!');
+         return;
+      }
+
+      //save selected ans into question
+      // console.log(questions);
+
+      const index = questions.findIndex((ques) => {
+         return quesId == ques._id;
+      });
+
+      //means user is editing their previous saved option
+      questions[index].submittedOption = selectedOption;
+      setQuestions(questions);
+      // then move to next question
+      changeCurrentQuestion(currentQuestion + 1);
+   };
+
    return (
       <div className="container-fluid">
          <div className="row">
-            <QuestionListPanel changeCurrentQuestion={changeCurrentQuestion} />
+            <QuestionListPanel
+               questions={questions}
+               changeCurrentQuestion={changeCurrentQuestion}
+            />
             <QuestionDetailPanel
+               questions={questions}
+               saveAnswerFunc={saveAnswerFunc}
                currentQuestion={currentQuestion}
                changeCurrentQuestion={changeCurrentQuestion}
             />
@@ -68,7 +97,7 @@ function AttemptTest() {
    );
 }
 
-function QuestionListPanel({ changeCurrentQuestion }) {
+function QuestionListPanel({ questions, changeCurrentQuestion }) {
    return (
       <div className="container col-md-3 border border-black pt-4 text-center">
          <Timer timelimit={timeLimit} />
@@ -114,7 +143,9 @@ function QuestionListPanel({ changeCurrentQuestion }) {
                            changeCurrentQuestion(index);
                         }}
                         id="questionno"
-                        className="bg-light mb-2"
+                        className={`mb-2 ${
+                           question.submittedOption ? 'correct' : 'bg-light'
+                        }`}
                      >
                         Question {index + 1}
                      </button>
@@ -126,7 +157,7 @@ function QuestionListPanel({ changeCurrentQuestion }) {
    );
 }
 
-function QuestionDetailPanel({ currentQuestion, changeCurrentQuestion }) {
+function QuestionDetailPanel({ questions, saveAnswerFunc, currentQuestion }) {
    function submitTest() {
       axios
          .post(`/attemptTest/${testId}`, questions)
@@ -139,26 +170,6 @@ function QuestionDetailPanel({ currentQuestion, changeCurrentQuestion }) {
 
       window.location.href = '/home';
    }
-
-   const saveAnswerFunc = (quesId, selectedOption) => {
-      if (!selectedOption) {
-         alert('Please select an option!');
-         return;
-      }
-
-      //save selected ans into question
-      // console.log(questions);
-
-      const index = questions.findIndex((ques) => {
-         return quesId == ques._id;
-      });
-
-      //means user is editing their previous saved option
-      questions[index].submittedOption = selectedOption;
-
-      // then move to next question
-      changeCurrentQuestion(currentQuestion + 1);
-   };
 
    const questionBoxes = questions.map((question, index) => {
       return (
@@ -240,7 +251,11 @@ function QuestionBox({
                      <span
                         style={{ fontSize: '1em' }}
                         className={`input-group-text ${
-                           currentAnswer == 'A' ? 'correct' : ''
+                           currentAnswer == 'A' ||
+                           (question.submittedOption &&
+                              question.submittedOption == 'A')
+                              ? 'correct'
+                              : ''
                         }`}
                      >
                         Option A
@@ -262,7 +277,11 @@ function QuestionBox({
                      <span
                         style={{ fontSize: '1em' }}
                         className={`input-group-text ${
-                           currentAnswer == 'B' ? 'correct' : ''
+                           currentAnswer == 'B' ||
+                           (question.submittedOption &&
+                              question.submittedOption == 'B')
+                              ? 'correct'
+                              : ''
                         }`}
                      >
                         Option B
@@ -286,7 +305,11 @@ function QuestionBox({
                      <span
                         style={{ fontSize: '1em' }}
                         className={`input-group-text ${
-                           currentAnswer == 'C' ? 'correct' : ''
+                           currentAnswer == 'C' ||
+                           (question.submittedOption &&
+                              question.submittedOption == 'C')
+                              ? 'correct'
+                              : ''
                         }`}
                      >
                         Option C
@@ -308,7 +331,11 @@ function QuestionBox({
                      <span
                         style={{ fontSize: '1em' }}
                         className={`input-group-text ${
-                           currentAnswer == 'D' ? 'correct' : ''
+                           currentAnswer == 'D' ||
+                           (question.submittedOption &&
+                              question.submittedOption == 'D')
+                              ? 'correct'
+                              : ''
                         }`}
                      >
                         Option D
