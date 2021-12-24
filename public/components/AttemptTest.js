@@ -49,8 +49,8 @@ getQuestions().then(() => {
 
 function AttemptTest() {
    const [questions, setQuestions] = React.useState(fetchedQuestions);
-   console.log('questions');
-   console.log(questions);
+   // console.log('questions');
+   // console.log(questions);
 
    const [currentQuestion, setCurrentQuestion] = React.useState(0);
    // const [showScore, setShowScore] = React.useState(false);
@@ -162,11 +162,13 @@ function QuestionDetailPanel({ questions, saveAnswerFunc, currentQuestion }) {
       axios
          .post(`/attemptTest/${testId}`, questions)
          .then((response) => {
-            window.location.href = `/testattempt-success/${response.data}`;
+            console.log(response.data);
          })
          .catch((error) => {
             console.log(error);
          });
+
+      window.location.href = '/home';
    }
 
    const questionBoxes = questions.map((question, index) => {
