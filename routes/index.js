@@ -43,6 +43,11 @@ router.get('/test-success/:testid', (req, res) => {
    const testid = req.params.testid;
    res.render('testCreateSuccess.ejs', { testid });
 });
+router.get('/testattempt-success/:resid', (req, res) => {
+   const resid = req.params.resid;
+   // res.render('testCreateSuccess.ejs', { testid });
+   res.render('testAttemptSuccess.ejs', { resid });
+});
 
 router.get('/users/:userid', async (req, res) => {
    const userid = req.params.userid;
@@ -61,6 +66,7 @@ router.get('/users/:userid', async (req, res) => {
    var tot_ranks = [];
    var avgRank = 0;
    var bestRank = 100000;
+   var avgScore = 0;
    for (var i = 0; i < foundUser.previousResults.length; i++) {
       var tests = await Result.findById(foundUser.previousResults[i]).populate(
          'testId',
@@ -92,9 +98,15 @@ router.get('/users/:userid', async (req, res) => {
       labels.push(result.testId.testName);
       graphData.push(result.percentScore);
    });
-
-   avgRank = avgRank / length1 + 1;
-   const avgScore = Number(Number(sum) / Number(length));
+   if (length1 != 0) {
+      avgRank = avgRank / length1 + 1;
+   }
+   if (length != 0) {
+      avgScore = Number(Number(sum) / Number(length));
+   }
+   if (bestRank == 100000) {
+      bestRank = 0;
+   }
    res.render('profile.ejs', {
       user: foundUser,
       avgScore: avgScore,
@@ -108,6 +120,7 @@ router.get('/users/:userid', async (req, res) => {
       avgRank: avgRank,
       labels: labels,
       graphData: graphData,
+      currentUser: foundUser,
    });
 });
 

@@ -136,7 +136,10 @@
                   </tr>
                </table>
                <hr />
-               <a href="/results/<%=item._id%>" class="btn btn-primary" style="width: 100%"
+               <a
+                  href="/results/<%=item._id%>"
+                  class="btn btn-primary"
+                  style="width: 100%"
                   >View Test</a
                >
             </div>
@@ -271,75 +274,75 @@
 
    <script>
 
-const labels = <%-JSON.stringify(labels)%>;
-const graphData = <%-JSON.stringify(graphData)%>;
+      const labels = <%-JSON.stringify(labels)%>;
+      const graphData = <%-JSON.stringify(graphData)%>;
 
-      const ctx = document.getElementById('myChart').getContext('2d');
+            const ctx = document.getElementById('myChart').getContext('2d');
 
-      let delayed;
-      var gradient = ctx.createLinearGradient(0, 0, 0, 400);
-      gradient.addColorStop(0, 'rgba(58,123,213,1)');
-      gradient.addColorStop(1, 'rgba(0,210,255,0.3)');
+            let delayed;
+            var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, 'rgba(58,123,213,1)');
+            gradient.addColorStop(1, 'rgba(0,210,255,0.3)');
 
-      const data = {
-         labels,
-         datasets: [
-            {
-               data: graphData,
-               label: 'Score',
-               fill: true,
-               backgroundColor: gradient,
-               borderColor: '#fff',
-               pointBackgroundColor: 'rgb(189,195,199)',
-            },
-         ],
-      };
+            const data = {
+               labels,
+               datasets: [
+                  {
+                     data: graphData,
+                     label: 'Score',
+                     fill: true,
+                     backgroundColor: gradient,
+                     borderColor: '#fff',
+                     pointBackgroundColor: 'rgb(189,195,199)',
+                  },
+               ],
+            };
 
-      const config = {
-         type: 'line',
-         data: data,
-         options: {
-            deferred: {
-               yOffset: '100%', // defer until 50% of the canvas height are inside the viewport
-               delay: 500, // delay of 500 ms after the canvas is considered inside the viewport
-            },
-            animation: {
-               onComplete: () => {
-                  delayed = true;
+            const config = {
+               type: 'line',
+               data: data,
+               options: {
+                  deferred: {
+                     yOffset: '100%', // defer until 50% of the canvas height are inside the viewport
+                     delay: 500, // delay of 500 ms after the canvas is considered inside the viewport
+                  },
+                  animation: {
+                     onComplete: () => {
+                        delayed = true;
+                     },
+                     delay: (context) => {
+                        let delay = 0;
+                        if (
+                           context.type === 'data' &&
+                           context.mode === 'default' &&
+                           !delayed
+                        ) {
+                           delay =
+                              context.dataIndex * 300 + context.datasetIndex * 100;
+                        }
+                        return delay;
+                     },
+                  },
+
+                  radius: 5,
+                  hitRadius: 30,
+                  hoverRadius: 12,
+                  responsive: true,
                },
-               delay: (context) => {
-                  let delay = 0;
-                  if (
-                     context.type === 'data' &&
-                     context.mode === 'default' &&
-                     !delayed
-                  ) {
-                     delay =
-                        context.dataIndex * 300 + context.datasetIndex * 100;
-                  }
-                  return delay;
-               },
-            },
+            };
 
-            radius: 5,
-            hitRadius: 30,
-            hoverRadius: 12,
-            responsive: true,
-         },
-      };
+            function isElementVisible(el, holder) {
+               holder = holder || document.body;
+               const { top, bottom, height } = el.getBoundingClientRect();
+               const holderRect = holder.getBoundingClientRect();
 
-      function isElementVisible(el, holder) {
-         holder = holder || document.body;
-         const { top, bottom, height } = el.getBoundingClientRect();
-         const holderRect = holder.getBoundingClientRect();
+               return top <= holderRect.top
+                  ? holderRect.top - top <= height
+                  : bottom - holderRect.bottom <= height;
+            }
 
-         return top <= holderRect.top
-            ? holderRect.top - top <= height
-            : bottom - holderRect.bottom <= height;
-      }
-
-      if (isElementVisible(document.getElementById('myChart'))) {
-         var myChart = new Chart(ctx, config);
-      }
+            if (isElementVisible(document.getElementById('myChart'))) {
+               var myChart = new Chart(ctx, config);
+            }
    </script>
 </div>
