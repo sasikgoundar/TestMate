@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
    res.render('landing.ejs');
 });
 
-router.get('/results/:resultid', async (req, res) => {
+router.get('/results/:resultid', isLoggedIn, async (req, res) => {
    const resultId = req.params.resultid;
    const foundResult = await Result.findById(resultId);
    const foundTest = await Test.findById(foundResult.testId);
@@ -124,7 +124,7 @@ router.get('/users/:userid', async (req, res) => {
    });
 });
 
-router.get('/leaderboard/:testid', async (req, res) => {
+router.get('/leaderboard/:testid', isLoggedIn, async (req, res) => {
    const testid = req.params.testid;
    const logged_in_user = await User.findById(req.user._id);
 

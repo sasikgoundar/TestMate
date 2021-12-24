@@ -16,11 +16,11 @@ const isLoggedIn = (req, res, next) => {
    next();
 };
 
-router.get('/createTest', (req, res) => {
+router.get('/createTest', isLoggedIn, (req, res) => {
    res.render('createTest.ejs');
 });
 
-router.post('/createTest', async (req, res) => {
+router.post('/createTest', isLoggedIn, async (req, res) => {
    const submittedTest = req.body;
 
    const start = moment(
@@ -67,11 +67,7 @@ router.post('/createTest', async (req, res) => {
    res.json(createdTest._id);
 });
 
-router.get('/result', async (req, res) => {
-   res.render('result.ejs');
-});
-
-router.get('/attemptTest/:testid', async (req, res) => {
+router.get('/attemptTest/:testid', isLoggedIn, async (req, res) => {
    const testid = req.params.testid;
 
    if (!mongoose.isValidObjectId(testid)) return res.send('No test found');
@@ -129,7 +125,7 @@ router.get('/getResult/:resultid', async (req, res) => {
    res.json(foundResult);
 });
 
-router.post('/attemptTest/:testid', async (req, res) => {
+router.post('/attemptTest/:testid', isLoggedIn, async (req, res) => {
    console.log('post route called!');
    const testid = req.params.testid;
 
