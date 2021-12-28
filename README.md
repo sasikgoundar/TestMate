@@ -66,6 +66,8 @@ Run the Project
 ![image](https://user-images.githubusercontent.com/56561152/147337140-3adb0742-29f3-4e75-9da9-6452dd532265.png)
 ![image](https://user-images.githubusercontent.com/56561152/147337210-ae155cac-f105-4856-ad22-623e80276ce0.png)
 ![image](https://user-images.githubusercontent.com/56561152/147337294-c49001e1-ca89-475b-b0ae-63c5e9111571.png)
+![image](https://user-images.githubusercontent.com/56561152/147529312-fda64933-2622-40a7-981e-ea39fb04eef5.png)
+![image](https://user-images.githubusercontent.com/56561152/147529395-2bc7bf8b-02ee-4873-91ca-8e49af5a7013.png)
 
 ##### This Project is made under 5th SEM MERN Course.
 
